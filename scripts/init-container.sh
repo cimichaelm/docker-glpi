@@ -12,9 +12,11 @@ defaults()
     webdir=/var/www/html
     appuser=www-data
     appgroup=www-data
+    glpidir="${webdir}/glpi"
     filesdir="${webdir}/files"
-    pluginsdir="${webdir}/plugins"
+    pluginsdir="${glpi}/plugins"
     subdirlist="_cache _cron _dumps _graphs _lock _pictures _plugins _rss _sessions _tmp _uploads"
+    pkgdir=${tmpdir}/pkg
     
 }
 
@@ -40,6 +42,7 @@ setup()
 {
 
     create_directory $logdir
+    create_directory $pkgdir    
 
     # create subdirs
     for subdir in $subdirlist; do
@@ -62,11 +65,11 @@ phpconfig()
 get_plugins()
 {
     pluginname=glpiinventory
-    cd $tmpdir
+    cd $pkgdir
     if [ ! -d "${pluginsdir}/${pluginname}" ]; then
 	wget https://github.com/glpi-project/glpi-inventory-plugin/releases/download/1.0.6/glpi-glpiinventory-1.0.6.tar.bz2
 	cd $pluginsdir
-	bzcat $tmpdir/glpi-glpiinventory-1.0.6.tar.bz2 | tar xf -
+	bzcat $pkgdir/glpi-glpiinventory-1.0.6.tar.bz2 | tar xf -
     fi
 
     set_permissions ${pluginsdir}    
