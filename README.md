@@ -23,6 +23,9 @@
 
 # Introduction
 
+
+Under development to work with kubernetes
+
 Install and run an GLPI instance with docker
 
 ## Default accounts
