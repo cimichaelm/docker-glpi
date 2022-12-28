@@ -46,8 +46,15 @@ setup()
     fi
 }
 
+phpconfig()
+{
+    echo "session.cookie_httponly=on" > /etc/php/7.4/apache2/conf.d/local.ini
+}
+
 defaults
 
 setup
+
+phpconfig
 
 exit 0
