@@ -63,9 +63,9 @@ get_plugins()
 {
     cd $tmpdir
     wget https://github.com/glpi-project/glpi-inventory-plugin/releases/download/1.0.6/glpi-glpiinventory-1.0.6.tar.bz2
-    bunzip2 glpi-glpiinventory-1.0.6.tar.bz2
+    #bunzip2 glpi-glpiinventory-1.0.6.tar.bz2
     cd $pluginsdir
-    tar xvf $tmpdir/glpi-glpiinventory-1.0.6.tar
+    bzcat $tmpdir/glpi-glpiinventory-1.0.6.tar.bz2 | tar xf -
 }
 
 defaults
