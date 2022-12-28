@@ -44,6 +44,10 @@ setup()
     if [ -d ${filesdir} ]; then
 	chown -R ${appuser}:${appgroup} ${filesdir}
     fi
+    if [ -d $GLPI_CONFIG_DIR ]; then
+	chown -R ${appuser}:${appgroup} $GLPI_CONFIG_DIR
+    fi
+    
 }
 
 phpconfig()
