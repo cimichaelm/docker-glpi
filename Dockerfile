@@ -43,7 +43,6 @@ RUN mkdir -p /opt/glpi
 COPY scripts/init-container.sh /opt/glpi/
 COPY scripts/glpi-start.sh /opt/glpi/
 RUN chmod +x /opt/glpi/*.sh
-RUN /opt/glpi/init-container.sh
 ENTRYPOINT ["/opt/glpi/glpi-start.sh"]
 
 #Exposition des ports
