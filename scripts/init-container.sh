@@ -13,6 +13,7 @@ defaults()
     appuser=www-data
     appgroup=www-data
     filesdir="${webdir}/files"
+    pluginsdir="${webdir}/plugins"
     subdirlist="_cache _cron _dumps _graphs _lock _pictures _plugins _rss _sessions _tmp _uploads"
     
 }
@@ -26,6 +27,13 @@ create_directory()
     fi
 }
 
+set_permissions()
+{
+    Ldir=$1
+    if [ -d ${Ldir} ]; then
+	chown -R ${appuser}:${appgroup} ${Ldir}
+    fi
+}
 
 # setup
 setup()
@@ -41,18 +49,23 @@ setup()
     done
 
     # set permissions
-    if [ -d ${filesdir} ]; then
-	chown -R ${appuser}:${appgroup} ${filesdir}
-    fi
-    if [ -d $GLPI_CONFIG_DIR ]; then
-	chown -R ${appuser}:${appgroup} $GLPI_CONFIG_DIR
-    fi
-    
+    set_permissions ${filesdir}    
+    set_permissions $GLPI_CONFIG_DIR
+    set_permissions ${pluginsdir}
 }
 
 phpconfig()
 {
     echo "session.cookie_httponly=on" > /etc/php/7.4/apache2/conf.d/local.ini
+}
+
+get_plugins()
+{
+    cd $tmpdir
+    wget https://github.com/glpi-project/glpi-inventory-plugin/releases/download/1.0.6/glpi-glpiinventory-1.0.6.tar.bz2
+    bunzip2 glpi-glpiinventory-1.0.6.tar.bz2
+    cd $pluginsdir
+    tar xvf $tmpdir/glpi-glpiinventory-1.0.6.tar
 }
 
 defaults

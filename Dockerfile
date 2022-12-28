@@ -11,6 +11,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt update \
 && apt install --yes --no-install-recommends \
 apache2 \
+bzip2 \
 php7.4 \
 php7.4-mysql \
 php7.4-ldap \
