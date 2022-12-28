@@ -61,11 +61,15 @@ phpconfig()
 
 get_plugins()
 {
+    pluginname=glpiinventory
     cd $tmpdir
-    wget https://github.com/glpi-project/glpi-inventory-plugin/releases/download/1.0.6/glpi-glpiinventory-1.0.6.tar.bz2
-    #bunzip2 glpi-glpiinventory-1.0.6.tar.bz2
-    cd $pluginsdir
-    bzcat $tmpdir/glpi-glpiinventory-1.0.6.tar.bz2 | tar xf -
+    if [! -d $pluginsdir/$plugininame ]; then
+	wget https://github.com/glpi-project/glpi-inventory-plugin/releases/download/1.0.6/glpi-glpiinventory-1.0.6.tar.bz2
+	cd $pluginsdir
+	bzcat $tmpdir/glpi-glpiinventory-1.0.6.tar.bz2 | tar xf -
+    fi
+
+    set_permissions ${pluginsdir}    
 }
 
 defaults
@@ -73,5 +77,7 @@ defaults
 setup
 
 phpconfig
+
+get_plugins
 
 exit 0
