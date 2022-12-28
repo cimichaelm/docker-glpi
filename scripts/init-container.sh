@@ -14,7 +14,7 @@ defaults()
     appgroup=www-data
     glpidir="${webdir}/glpi"
     filesdir="${webdir}/files"
-    pluginsdir="${glpi}/plugins"
+    pluginsdir="${glpidir}/plugins"
     subdirlist="_cache _cron _dumps _graphs _lock _pictures _plugins _rss _sessions _tmp _uploads"
     pkgdir=${tmpdir}/pkg
     
@@ -66,10 +66,12 @@ get_plugins()
 {
     pluginname=glpiinventory
     cd $pkgdir
-    if [ ! -d "${pluginsdir}/${pluginname}" ]; then
-	wget https://github.com/glpi-project/glpi-inventory-plugin/releases/download/1.0.6/glpi-glpiinventory-1.0.6.tar.bz2
-	cd $pluginsdir
-	bzcat $pkgdir/glpi-glpiinventory-1.0.6.tar.bz2 | tar xf -
+    if [ -d "${pluginsdir}" ]; then
+	if [ ! -d "${pluginsdir}/${pluginname}" ]; then
+	    wget https://github.com/glpi-project/glpi-inventory-plugin/releases/download/1.0.6/glpi-glpiinventory-1.0.6.tar.bz2
+	    cd $pluginsdir
+	    bzcat $pkgdir/glpi-glpiinventory-1.0.6.tar.bz2 | tar xf -
+	fi
     fi
 
     set_permissions ${pluginsdir}    
