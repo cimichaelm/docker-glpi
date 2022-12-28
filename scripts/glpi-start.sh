@@ -24,8 +24,7 @@ then
 fi
 
 #Téléchargement et extraction des sources de GLPI
-if [ "$(ls ${FOLDER_WEB}${FOLDER_GLPI})" ];
-then
+if [ -d "${FOLDER_WEB}${FOLDER_GLPI}/config" ]; then
 	echo "GLPI is already installed"
 else
     /opt/glpi/init-container.sh
