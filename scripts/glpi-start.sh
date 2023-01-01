@@ -28,6 +28,7 @@ if [ -d "${FOLDER_WEB}${FOLDER_GLPI}/config" ]; then
 	echo "GLPI is already installed"
 else
     /opt/glpi/init-container.sh
+    /opt/glpi/install-app.sh
     
 	wget -P ${FOLDER_WEB} ${SRC_GLPI}
 	tar -xzf ${FOLDER_WEB}${TAR_GLPI} -C ${FOLDER_WEB}
