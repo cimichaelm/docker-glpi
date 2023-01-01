@@ -38,17 +38,6 @@ setup()
     create_directory $logdir
     create_directory $pkgdir    
 
-    # create subdirs
-    for subdir in $subdirlist; do
-	newdir="${filesdir}/$subdir"
-	echo "Checking: ${newdir}"
-	create_directory ${newdir}
-    done
-
-    # set permissions
-    set_permissions ${filesdir}    
-    set_permissions $GLPI_CONFIG_DIR
-    set_permissions ${pluginsdir}
 }
 
 defaults
