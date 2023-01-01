@@ -43,6 +43,7 @@ libsasl2-modules-db \
 RUN mkdir -p /opt/glpi
 COPY scripts/*.sh /opt/glpi/
 RUN chmod +x /opt/glpi/*.sh
+RUN scripts/download-assets.dh
 ENTRYPOINT ["/opt/glpi/glpi-start.sh"]
 
 #Exposition des ports

@@ -20,21 +20,15 @@ defaults()
     
 }
 
-# create_directory if not existing
-create_directory()
+init()
 {
-    Ldir=$1
-    if [ ! -d ${Ldir} ]; then
-        mkdir -p ${Ldir}
+    if [ -f ${basedir}/func.sh ]; then
+	. ${basedir}/func.sh
     fi
-}
-
-set_permissions()
-{
-    Ldir=$1
-    if [ -d ${Ldir} ]; then
-	chown -R ${appuser}:${appgroup} ${Ldir}
+    if [ -f ${basedir}/site.sh ]; then
+	. ${basedir}/site.sh
     fi
+    siteconfi
 }
 
 # setup
@@ -57,17 +51,12 @@ setup()
     set_permissions ${pluginsdir}
 }
 
-phpconfig()
-{
-    echo "session.cookie_httponly=on" > /etc/php/7.4/apache2/conf.d/local.ini
-}
-
 defaults
+
+init
 
 setup
 
 phpconfig
-
-get_plugins
 
 exit 0
