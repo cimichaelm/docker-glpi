@@ -41,8 +41,7 @@ libsasl2-modules-db \
 
 #Copie et execution du script pour l'installation et l'initialisation de GLPI
 RUN mkdir -p /opt/glpi
-COPY scripts/init-container.sh /opt/glpi/
-COPY scripts/glpi-start.sh /opt/glpi/
+COPY scripts/*.sh /opt/glpi/
 RUN chmod +x /opt/glpi/*.sh
 ENTRYPOINT ["/opt/glpi/glpi-start.sh"]
 
