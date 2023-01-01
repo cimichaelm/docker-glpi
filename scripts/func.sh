@@ -2,7 +2,9 @@
 # file: func.sh
 #
 
+#
 # create_directory if not existing
+#
 create_directory()
 {
     Ldir=$1
@@ -11,6 +13,9 @@ create_directory()
     fi
 }
 
+#
+# set permissions on files
+#
 set_permissions()
 {
     Ldir=$1
@@ -19,6 +24,9 @@ set_permissions()
     fi
 }
 
+#
+# add config for php
+#
 phpconfig()
 {
     echo "session.cookie_httponly=on" > /etc/php/7.4/apache2/conf.d/local.ini
@@ -30,6 +38,9 @@ get_plugins()
     install_plugins
 }
 
+#
+# extract and install plugin in plugins directory
+#
 install_plugins()
 {
     pluginname=glpiinventory
@@ -43,11 +54,14 @@ install_plugins()
     set_permissions ${pluginsdir}    
 }
 
+#
+# download and save in package directory
+#
 download_assets()
 {
     pluginname=glpiinventory
     cd $pkgdir
     for plugin in ${pluginlist}; do
-	wget $plugin
+	wget $wgetoptions $plugin
     done
 }
