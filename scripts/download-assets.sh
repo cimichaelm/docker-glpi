@@ -34,6 +34,8 @@ init
 
 setup
 
+get_appdlurl
+
 download_assets
 
 exit 0

@@ -54,6 +54,18 @@ install_plugins()
     set_permissions ${pluginsdir}    
 }
 
+
+#
+# get dl url for app
+#
+get_appdlurl()
+{
+    [[ ! "$VERSION_GLPI" ]] \
+	&& VERSION_GLPI=$(curl -s https://api.github.com/repos/glpi-project/glpi/releases/latest | grep tag_name | cut -d '"' -f 4)
+    SRC_GLPI=$(curl -s https://api.github.com/repos/glpi-project/glpi/releases/tags/${VERSION_GLPI} | jq .assets[0].browser_download_url | tr -d \")
+    downloadlist="${downloadlist} $SRC_GLPI"
+}
+
 #
 # download and save in package directory
 #
@@ -61,7 +73,14 @@ download_assets()
 {
     pluginname=glpiinventory
     cd $pkgdir
-    for plugin in ${pluginlist}; do
-	wget $wgetoptions $plugin
+    download_list ${downloadlist}    
+    download_list ${pluginlist}
+}
+
+download_list()
+{
+    Lurllist=$*
+    for Lurl in ${Lurllist}; do
+	wget $wgetoptions $Lurl
     done
 }
