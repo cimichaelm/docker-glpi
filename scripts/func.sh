@@ -80,6 +80,7 @@ download_list()
 {
     Lurllist=$*
     for Lurl in ${Lurllist}; do
-	wget $wgetoptions $Lurl
+	echo "Downloading: ${Lurl}"
+	wget $wgetoptions "${Lurl}"
     done
 }
