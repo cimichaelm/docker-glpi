@@ -1,0 +1,5 @@
+#
+# glpi
+# crontab for user
+#
+*/2 * * * * /usr/bin/php /var/www/html/glpi/front/cron.php 2>&1 > /var/tmp/glpi-ucron.log

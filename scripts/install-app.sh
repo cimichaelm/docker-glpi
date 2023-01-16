@@ -40,6 +40,12 @@ setup()
     set_permissions ${pluginsdir}
 }
 
+# crontab
+set_crontab()
+{
+    crontab -u www-data /opt/glpi/crontab
+}
+
 
 defaults
 
@@ -48,5 +54,7 @@ init
 setup
 
 install_plugins
+
+set_crontab
 
 exit 0

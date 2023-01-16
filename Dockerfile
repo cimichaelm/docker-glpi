@@ -44,6 +44,7 @@ sudo \
 RUN mkdir -p /opt/glpi
 COPY scripts/*.sh /opt/glpi/
 COPY etc/cron.d/glpi /etc/cron.d/glpi
+COPY files/crontab /opt/glpi/crontab
 RUN chmod +x /opt/glpi/*.sh
 RUN /opt/glpi/download-assets.sh
 ENTRYPOINT ["/opt/glpi/glpi-start.sh"]
