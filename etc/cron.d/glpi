@@ -1,2 +1,4 @@
-*/2 * * * * root sudo -E -u www-data /usr/bin/php /var/www/html/glpi/front/cron.php 2>&1 > /var/tmp/glpi-cron.log
+*/2 * * * * www-data /opt/glpi/glpi-cron.sh >> /dev/null
+
+
 
