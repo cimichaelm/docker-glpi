@@ -43,6 +43,7 @@ sudo \
 #Copie et execution du script pour l'installation et l'initialisation de GLPI
 RUN mkdir -p /opt/glpi
 COPY scripts/*.sh /opt/glpi/
+COPY etc/cron.d/glpi /etc/cron.d/glpi
 RUN chmod +x /opt/glpi/*.sh
 RUN /opt/glpi/download-assets.sh
 ENTRYPOINT ["/opt/glpi/glpi-start.sh"]
