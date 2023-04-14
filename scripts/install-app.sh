@@ -55,6 +55,6 @@ setup
 
 install_plugins
 
-set_crontab
+#set_crontab
 
 exit 0

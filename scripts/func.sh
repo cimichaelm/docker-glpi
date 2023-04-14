@@ -39,16 +39,40 @@ get_plugins()
 }
 
 #
+# extract plugin. does not check for prior version. will overwrite.
+#
+extract_plugin()
+{
+    Lfilename=$1
+    Lcompress=$2
+    
+    if [ -d "${pluginsdir}" ]; then
+	cd "${pluginsdir}"
+	if [ -f "${Lfilename}" ]; then
+	    "${extractprog}" "${Lfilename}" | tar xf -
+	fi
+    fi
+}
+
+#
 # extract and install plugin in plugins directory
 #
 install_plugins()
 {
     pluginname=glpiinventory
     if [ -d "${pluginsdir}" ]; then
+	cd $pluginsdir
 	if [ ! -d "${pluginsdir}/${pluginname}" ]; then
-	    cd $pluginsdir
 	    bzcat $pkgdir/glpi-glpiinventory-1.0.6.tar.bz2 | tar xf -
 	fi
+	extractprog=bzcat
+	for pi in ${pluginsbzinst}; do
+	    extract_plugin "${pkgdir}/${pi}"
+	done
+	extractprog=zcat	
+	for pi in ${pluginsgzinst}; do
+	    extract_plugin "${pkgdir}/${pi}"
+	done
     fi
 
     set_permissions ${pluginsdir}    
