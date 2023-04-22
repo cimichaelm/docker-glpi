@@ -6,6 +6,7 @@ LABEL org.opencontainers.image.authors="github@diouxx.be"
 
 #Ne pas poser de question à l'installation
 ENV DEBIAN_FRONTEND noninteractive
+COPY ./conf/version.txt /opt/glpi/version.txt
 
 #Installation d'apache et de php7.4 avec extension
 RUN apt update \
