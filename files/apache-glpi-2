@@ -1,7 +1,7 @@
 <VirtualHost *:80>
-	DocumentRoot /var/www/html/glpi
-# for glpi version 10.0.7+
-	<Directory /var/www/html/glpi>
+	# for glpi version 10.0.7+
+	DocumentRoot /var/www/html/glpi/public
+	<Directory /var/www/html/glpi/public>
 		AllowOverride All
 		Require all granted
 
