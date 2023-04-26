@@ -1,0 +1,18 @@
+<VirtualHost *:80>
+	DocumentRoot /var/www/html/glpi
+# for glpi version 10.0.7+
+	<Directory /var/www/html/glpi>
+		AllowOverride All
+		Require all granted
+
+		RewriteEngine On
+
+		# Redirect all requests to GLPI router, unless file exists.
+		RewriteCond %{REQUEST_FILENAME} !-f
+		RewriteRule ^(.*)$ index.php [QSA,L]
+	</Directory>
+
+	ErrorLog /var/log/apache2/error-glpi.log
+	LogLevel warn
+	CustomLog /var/log/apache2/access-glpi.log combined
+</VirtualHost>
