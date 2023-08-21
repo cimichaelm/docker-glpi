@@ -63,7 +63,7 @@ install_plugins()
     if [ -d "${pluginsdir}" ]; then
 	cd $pluginsdir
 	if [ ! -d "${pluginsdir}/${pluginname}" ]; then
-	    bzcat $pkgdir/glpi-glpiinventory-1.0.6.tar.bz2 | tar xf -
+	    bzcat $pkgdir/glpi-glpiinventory-1.2.3.tar.bz2 | tar xf -
 	fi
 	extractprog=bzcat
 	for pi in ${pluginsbzinst}; do
