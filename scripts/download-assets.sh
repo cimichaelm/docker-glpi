@@ -39,7 +39,7 @@ if [ $glpi_downloadlatest -eq 1 ]; then
     get_appdlurl
 fi
 # check if new version
-if [ "${glpi_version}" -ne "${VERSION_GLPI}" ]; then
+if [ "${glpi_version}" = "${VERSION_GLPI}" ]; then
     get_github_dlurl "${glpi_repo}" "${glpi_version}"
 fi
 
