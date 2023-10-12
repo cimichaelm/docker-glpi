@@ -34,8 +34,17 @@ init
 
 setup
 
-get_appdlurl
+# check latest version
+if [ $glpi_downloadlatest -eq 1 ]; then
+    get_appdlurl
+fi
+# check if new version
+if [ "${glpi_version}" -ne "${VERSION_GLPI}" ]; then
+    get_github_dlurl "${glpi_repo}" "${glpi_version}"
+fi
 
-download_assets
+if [ $glpi_downloadassets -eq 1 ]; then
+    download_assets
+fi
 
 exit 0

@@ -90,6 +90,17 @@ get_appdlurl()
 }
 
 #
+# get dl url for app
+#
+get_github_dlurl()
+{
+    Lrepo=$1
+    Lversion=$2
+    Lurl=$(curl -s https://api.github.com/repos/${Lrepo}/releases/tags/${Lversion} | jq .assets[0].browser_download_url | tr -d \")
+    downloadlist="${downloadlist} $Lurl"
+}
+
+#
 # download and save in package directory
 #
 download_assets()
