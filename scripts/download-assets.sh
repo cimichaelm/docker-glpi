@@ -36,10 +36,11 @@ setup
 
 # check latest version
 if [ $glpi_downloadlatest -eq 1 ]; then
-    get_appdlurl
+    get_appdlurl "${glpi_repo}"
 fi
+
 # check if new version
-if [ "${glpi_version}" = "${VERSION_GLPI}" ]; then
+if [ "${glpi_version}" != "${VERSION_GLPI}" ]; then
     get_github_dlurl "${glpi_repo}" "${glpi_version}"
 fi
 

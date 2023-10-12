@@ -84,8 +84,9 @@ install_plugins()
 #
 get_appdlurl()
 {
-    VERSION_GLPI=$(curl -s https://api.github.com/repos/glpi-project/glpi/releases/latest | grep tag_name | cut -d '"' -f 4)
-    SRC_GLPI=$(curl -s https://api.github.com/repos/glpi-project/glpi/releases/tags/${VERSION_GLPI} | jq .assets[0].browser_download_url | tr -d \")
+    Lrepo=$1
+    VERSION_GLPI=$(curl -s https://api.github.com/repos/${Lrepo}/releases/latest | grep tag_name | cut -d '"' -f 4)
+    SRC_GLPI=$(curl -s https://api.github.com/repos/${Lrepo}/releases/tags/${VERSION_GLPI} | jq .assets[0].browser_download_url | tr -d \")
     downloadlist="${downloadlist} $SRC_GLPI"
 }
 
